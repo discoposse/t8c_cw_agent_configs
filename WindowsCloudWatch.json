@@ -1,0 +1,27 @@
+{
+  "metrics": {
+    "namespace": "Windows System",
+    "append_dimensions": {
+      "InstanceId": "${aws:InstanceId}"
+    },
+    "aggregation_dimensions" : [ ["InstanceId"] ],
+    "metrics_collected": {
+      "Memory": {
+        "measurement": [
+          {"name": "% Committed Bytes In Use", "rename": "MemoryUsed", "unit": "Bytes"},
+          {"name" : "Available Bytes", "rename": "MemoryAvailable", "unit": "Bytes"}
+        ],
+        "metrics_collection_interval": 60
+      },
+      "Paging File": {
+        "measurement": [
+          {"name": "% Usage", "rename": "paging_used"}
+        ],
+        "metrics_collection_interval": 60,
+        "resources": [
+          "*"
+        ]
+      }
+    }
+  }
+}
